@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="owl-carousel owl-single home-slider">
+    <div class="item">
+        <div class="untree_co-hero" style="background-image: url({% static 'images/Cover-Basictee.jpg' %});">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+
+                        <h1 class="mb-4 heading" data-aos="fade-up" data-aos-delay="100">Tampil kasual dengan <span style="color:rgb(147, 124, 72);">Cotton Basic</span></h1>
+                        <div class="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
+                        </div>
+
+                        <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="{% url 'product' %}" class="btn btn-outline-black">Explore Product</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.untree_co-hero -->
+    </div>
+
+
+    <!-- <div class="item">
+        <div class="untree_co-hero" style="background-image: url('images/hero-slider-2-min.jpg');">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+
+                        <h1 class="mb-4 heading" data-aos="fade-up" data-aos-delay="100">The New Way To Sell Your Products by <a href="https://untree.co">Untree.co</a></h1>
+                        <div class="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
+                        </div>
+
+                        <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="#" class="btn btn-outline-black">Explore now</a></p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /.untree_co-hero -->
+</div>
+
+</div>
+
+
+
+
+
+<div class="untree_co-section">
+    <div class="container">
+        <div class="deal-hero overlay" style="background-image: url('{% static 'images/basic_tees_2.jpeg' %}')">
+        </div>
+        <!-- /.deal-hero -->
+    </div>
+</div>
+
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row justify-content-xl-around">
+            <h3>On Sale Product</h3>
+            <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="{% url 'product' %}" class="btn btn-outline-black">Explore All Product</a></p>
+        </div>
+        
+        <br>
+        <div class="row">
+            {% for product in products %}
+            {% if product.sale %}
+                <div class="col-6 col-sm-6 col-md-6 mb-4 col-lg-4">
+                    <div class="product-item">
+                        {% if product.sale %}
+                        <div class="label sale top-right">
+                            <div class='content'>Sale</div>
+                        </div>
+                        {% endif %}
+                        <a href="" class="product-img">
+
+                            <img src="{{product.image.url}}" alt="Image" class="img-fluid">
+                        </a>
+                        <h3 class="title"><a href="#">{{product.name}}</a></h3>
+                        <div class="price">
+                            {% if product.sale %}
+                            <del style="color: red;">IDR.{{product.price}},000</del> &mdash; <span style="color: red;">IDR.{{product.discountedPrice}},000</span>
+                            {% else %}
+                            <span style="color: red;">IDR.{{product.price}},000</span>
+                            {% endif %}
+                        </div>
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="add" value="{{product.id}}">
+                            <button type="submit" class="btn btn-light">Add to Cart</button>
+                        </form>
+                    </div>
+                </div>
+            {% endif %}
+            {% endfor %}
+
+        </div>
+    </div>
+</div>
+<!-- /.untree_co-section -->
+
+
+<div class="container">
+
+
+    <div class="deal-hero overlay" style="background-image: url('{% static 'images/Cover - Prime Signature.jpeg' %}')">
+
+    </div>
+    <!-- /.deal-hero -->
+
+</div>
+
+{% include 'testimonial.html' %}
+<!-- /.untree_co-section -->
+
+{% endblock content %}

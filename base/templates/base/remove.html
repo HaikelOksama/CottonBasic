@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Remove{% endblock title %}
+
+{% block content %}
+
+<div class="">
+    <center><h1>Delete</h1></center>
+    <hr>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <p>Are you sure to delete '{{product.name}}' ?</p>
+        <a href="{{request.META.HTTP_REFERER}}">cancel</a>
+        <input type="submit" value="Confirm" >
+    </form>
+</div>
+
+{% endblock content %}
+

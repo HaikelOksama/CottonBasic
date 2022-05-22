@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}{{product.name}}{% endblock title %}
+
+
+{% block content %}
+<div class="container">
+    <h2>{{product.name}}</h2>
+    <hr>
+    <p>{{product.description}}</p>
+    <p>{{product.price}}</p>
+    <div class="addcart">
+    {% if request.user.is_authenticated %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Add to cart">
+    </form>
+    
+    {% else %}
+        <a href="{% url 'login' %}">Login</a> <span>untuk menambahkan ke keranjang</span> 
+    {% endif %}
+    </div>
+
+</div>
+
+{% endblock content %}

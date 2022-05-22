@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="inner_page_head">
+    <div class="container_fuild">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="full">
+                    <h3>Testimonial</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- end inner page section -->
+<!-- client section -->
+<section class="client_section layout_padding">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h2>
+                Yang Mereka Katakan
+            </h2>
+        </div>
+        <div id="carouselExample3Controls" class="carousel slide" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="box col-lg-10 mx-auto">
+                        <div class="img_container">
+                            <div class="img-box">
+                                <div class="img_box-inner">
+                                    <img src="{% static 'images/haikel.JPG' %}" alt="haikel">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                Haikel Oksama
+                            </h5>
+                            <h6>
+                                Customer
+                            </h6>
+                            <p>
+                                Pengiriman sangat cepat, packaging sangat safety. Overall keren Min!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="box col-lg-10 mx-auto">
+                        <div class="img_container">
+                            <div class="img-box">
+                                <div class="img_box-inner">
+                                    <img src="{% static 'images/dani.JPG' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                Umar Dani
+                            </h5>
+                            <h6>
+                                Customer
+                            </h6>
+                            <p>
+                                Product nyaman ketika digunakan, warna sangat pekat. Cocok untuk penggunaan formal dan non-formal.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <div class="box col-lg-10 mx-auto">
+                        <div class="img_container">
+                            <div class="img-box">
+                                <div class="img_box-inner">
+                                    <img src="{% static 'images/nidal.jpg' %}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="detail-box">
+                            <h5>
+                                Nidhal Fikri
+                            </h5>
+                            <h6>
+                                Customer
+                            </h6>
+                            <p>
+                                Barang selalu sampai dalam keadaan baik, packaging mantep pisan lur!
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel_btn_box">
+                <a class="carousel-control-prev" href="#carouselExample3Controls" role="button" data-slide="prev">
+                    <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExample3Controls" role="button" data-slide="next">
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

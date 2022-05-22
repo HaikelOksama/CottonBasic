@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="untree_co-hero" style="background-image: url('{% static 'images/Cover-Basictee.jpg' %}');">
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+            <div class="col-lg-8 text-center text-lg-center">
+
+                <h1 style="color: rgb(43, 43, 43);" class="mb-4 heading" data-aos="fade-up" data-aos-delay="100">About Products</a>
+                </h1>
+
+
+                <p class="mb-0" data-aos="fade-up" data-aos-delay="300"><a href="{% url 'product' %}" class="btn btn-black">Explore Product</a></p>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /.untree_co-hero -->
+
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-5 mb-5">
+                <h2 class="line-bottom mb-4" data-aos="fade-up" data-aos-delay="0">Kenapa Cotton Basic?</h2>
+                <p data-aos="fade-up" data-aos-delay="100">Kami menawaran kepada anda product yang kasual dan trendy, cocok untuk digunakan di berbagai keadaan baik formal maupun non-formal.</p>
+                <ul class="list-unstyled ul-check mb-5 black" data-aos="fade-up" data-aos-delay="200">
+                    <li>Material menggunakan katun terbaik</li>
+                    <li>Subsidi potongan ongkos kirim</li>
+                    <li>Pengiriman cepat</li>
+                </ul>
+
+                <div class="row count-numbers mb-5">
+                    <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                        <span class="counter d-block h2"><span data-number="526">0</span><span></span></span>
+                        <span class="caption-2">Customers</span>
+                    </div>
+                    <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                        <span class="counter d-block h2"><span data-number="94">0</span><span></span></span>
+                        <span class="caption-2">Product</span>
+                    </div>
+                </div>
+
+                <p data-aos="fade-up" data-aos-delay="200">
+                    <a href="{% url 'product' %}" class="btn btn-black">Shop Now</a>
+                    <a href="#" class="btn btn-outline-black">Pelajari Selengkapnya</a>
+                </p>
+            </div>
+            <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+                <img src="{% static 'images/watch_1.jpg' %}" width="400" alt="Image" class="img-fluid rounded">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

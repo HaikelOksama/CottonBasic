@@ -1,0 +1,161 @@
+{% extends 'base.html' %}
+{% block title %}Cart{% endblock title %}
+{% load static %}
+
+{% block content %}
+
+<div class="page-heading bg-light">
+    <div class="container">
+      <div class="row align-items-end text-center">
+        <div class="col-lg-7 mx-auto">
+          <h1>Cart</h1>      
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="untree_co-section">
+    <div class="container">
+      <div class="row mb-5">
+        <form class="col-md-12" method="post">
+          <div class="site-blocks-table">
+            {% if products %}
+            <table class="table table-bordered">
+              <thead>
+                <tr>
+                  <th class="product-thumbnail">Image</th>
+                  <th class="product-name">Product</th>
+                  <th class="product-price">Price</th>
+                  <th class="product-quantity">Quantity</th>
+                  <th class="product-total">Total</th>
+                  <th class="product-remove">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                
+                    {% for product in products %}
+                        <tr>
+                            <td class="product-thumbnail">
+                                <img src="{{product.image.url}}" alt="Image" class="img-fluid">
+                            </td>
+                            <td class="product-name">
+                                <h2 class="h5 text-black">{{product.name}}</h2>
+                            </td>
+                            <td id="price">{% if product.sale %}{{product.discountedPrice}}{% else %}{{product.price}}{% endif %}000</td>
+                            <td>
+                                <div class="input-group mb-3" style="max-width: 120px;">
+                                <div id="min" class="input-group-prepend">
+                                    <button class="btn btn-outline-black js-btn-minus" type="button">&minus;</button>
+                                </div>
+                                <input id='quantity' disabled type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+                                <div id="add" class="input-group-append">
+                                    <button class="btn btn-outline-black js-btn-plus" type="button">&plus;</button>
+                                </div>
+                                </div>
+
+                            </td>
+                            <td id="total">{% if product.sale %}{{product.discountedPrice}}{% else %}{{product.price}}{% endif %}000</td>
+                            <td>
+                                <form action="" method="post">
+                                <div class="option_container">
+                                    <div class="options">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="delete" value="{{product.id}}">
+                                        <button type="button" data-toggle="modal" data-target="#exampleModalCenter" class="btn btn-outline-danger btn-sm">Hapus dari keranjang</button>
+
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                          <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Delete</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                  <span aria-hidden="true">&times;</span>
+                                                </button>
+                                              </div>
+                                              <div class="modal-body">
+                                                Anda yakin ingin menghapus {{product.name}} dari keranjang?
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Hapus</button>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                </div>
+                                </form></td>
+                        </tr>
+                    {% empty %}
+                        <h2 style="color: black;">Your cart still empty! </h2>
+                    {% endfor %}
+                              
+              </tbody>
+            </table>
+            
+            
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          
+          <div class="row mb-5">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <button id="update" class="btn btn-black btn-sm btn-block">Update Cart</button>
+            </div>
+            <div class="col-md-6">
+              <a href="{% url 'product' %}"><button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button></a>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <label class="text-black h4" for="coupon">Coupon</label>
+              <p>Enter your coupon code if you have one.</p>
+            </div>
+            <div class="col-md-8 mb-3 mb-md-0">
+              <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
+            </div>
+            <div class="col-md-4">
+              <button class="btn btn-black">Apply Coupon</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 pl-5">
+          <div class="row justify-content-end">
+            <div class="col-md-7">
+              <div class="row">
+                <div class="col-md-12 text-right border-bottom mb-5">
+                  <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
+                </div>
+              </div>
+              <div class="row mb-5">
+                <div class="col-md-6">
+                  <span class="text-black">Total</span>
+                </div>
+                <div class="col-md-6 text-right">
+                  <strong class="text-black">IDR. <span id='final' ></span></strong>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <button class="btn btn-black btn-lg py-3 btn-block" onclick="window.location='checkout.html'">Proceed To Checkout</button>
+                </div>  
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      {% else %}
+      <h2 style="color: black;">Wah, Keranjang Belanja Kamu Masih Kosong! <a href="{% url 'product' %}">Shop Now </a></h2>
+    </div>
+  
+    {% endif %}
+  </div>
+
+{% endblock content %}
